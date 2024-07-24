@@ -1,74 +1,336 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Test</title>
-    <meta name="author" content="Derek Eder">
-    <meta content="Display any CSV file as a searchable, filterable, pretty HTML table">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FontSecure Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+	
+	@import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap');
+*
+{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
 
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
-        crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+.bodyCloud 
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+    /*background: #181c1f;*/
+	background: linear-gradient(90deg, #000000, #003399);
+}
+
+.containerCloud 
+{
+    position: relative;
+    height: 430px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    -webkit-box-reflect: below 1px linear-gradient(transparent, transparent,transparent,transparent,#0005)
+}
+
+.cloud {
+position: relative;
+top: 80px;
+width: 320px;
+height: 100px;
+background: #fff;
+border-radius: 100px;
+z-index: 100;
+filter: drop-shadow(0 0 35px #fff);
+}
+
+.cloud::before
+{
+  content: '';
+  position: absolute;
+  top: -50px;
+  left: 40px;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 90px 0 0 30px #fff;
+}
+
+.text
+{
+    position: absolute;
+    top: 40px;
+    height: 20px;
+    line-height: 20px;
+    text-transform: uppercase;
+    color: #fff;
+    text-shadow: 0 0 5px #fff,
+    0 0 15px #fff,
+    0 0 30px #fff;
+    transform-origin: bottom;
+    animation: animate 2s linear forwards;
+}
+
+@keyframes animate
+{
+    0%
+    {
+        transform: translateY(0) scale(1);
+    }
+    70%
+    {
+        transform: translateY(290px) scale(1)
+    }
+    100%
+    {
+        transform: translateY(290px) scale(0)
+    }
+
+}
+	
+/*Above here is the cloud animation*/	
+	
+body {
+	font-family: 'Arial', sans-serif;
+	margin: 0;
+	padding: 0;
+	/*background-color: #f4f4f4;*/
+	/*background-color: #181c1f;*/
+	background: linear-gradient(90deg, #000000, #003399);
+	/*color: #333;*/
+	color: white;
+}
+
+header {
+
+	/*background-image: url('teleportation.gif');*/
+	/*background-size:100%;*/
+	background: linear-gradient(90deg, #000000, #003399);
+	color: white;
+	padding: 1em 0;
+	text-align: center;
+	position: sticky;
+	top: 0;
+	z-index: 1000;
+	border-bottom: 3px solid red;	
+}
+
+nav {
+	/*background-color: #181c1f;*/
+	background: linear-gradient(90deg, #000000, #003399);
+	display: flex;
+	justify-content: center;
+}
+
+nav a {
+	color: white;
+	padding: 1em;
+	text-decoration: none;
+	transition: background-color 0.3s ease;
+}
+
+nav a:hover {
+	background-color: #0055cc;
+}
+
+.container {
+	padding: 2em;
+	text-align: center;
+}
+
+.services {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+.service {
+	background: white;
+	padding: 2em;
+	margin: 1em;
+	border-radius: 10px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	width: 300px;
+	transition: transform 0.3s ease;
+}
+
+.service:hover {
+	transform: translateY(-10px);
+}
+
+footer {
+	background-color: #333;
+	color: white;
+	text-align: center;
+	padding: 1em 0;
+	position: relative;
+	bottom: 0;
+	width: 100%;
+}
+
+.icon {
+	font-size: 2em;
+	margin-bottom: 0.5em;
+	color: #0066cc;
+}
+
+.boxText {
+    color: black;
+}
+
+.section {
+	
+	padding-top: 140px; /* Adjust based on your header height */
+	margin-top: -110px; /* Adjust based on your header height */
+}
+
+@media (max-width: 768px) {
+	.service {
+		width: 90%;
+	}
+}
+    </style>
 </head>
-
 <body>
-    <div class="container-fluid">
-        <main class="row">
-            <div class="col">
-                <h1>Test</h1>
 
-                <p>Test</p>
-
-                <p> As Example, here's a table of Health Clinics from the <a href="https://data.cityofchicago.org/browse?q=health%20clinic&sortBy=relevance&utf8=%E2%9C%93">City
-                        of Chicago Data Portal</a>.
-                </p>
-
-                <div id="table-container"></div>
-            </div>
-        </main>
-        <footer class="row">
-            <div class="col">
-                <hr>
-                <p class="text-right"><a href="https://github.com/derekeder/csv-to-html-table">CSV to HTML Table</a> by
-                    <a href="http://derekeder.com">Derek
-                        Eder</a></p>
-            </div>
-        </footer>
+    <header>
+        <h1>FontSecure Solutions</h1>
+        <p>Content without the data</p>
+    </header>
+	
+	<nav>
+		<a href="#about">Our Mission</a>
+		<a href="#services">Services</a>
+		<a href="#contact">Contact</a>
+    </nav>
+	
+	<div class="bodyCloud">
+	<div class="containerCloud"> 
+        <div  class="cloud">        
+        </div>
+		
     </div>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.bundle.min.js"></script>
-    <script src="js/jquery.csv.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
-    <script src="js/csv_to_html_table.js"></script>
+	</div>
+	
+    <div class="container section" id="about">
+        <h2>Our Mission</h2>
+        <p>At CyberSecure Solutions, we offer a cutting-edge service specifically designed to defend against 
+		   the evolving threats posed by AI-driven attacks, malicious robots, sophisticated hackers, and 
+		   digital copycats.
+		</p>
+		<p>our anti-copycat measures safeguard your intellectual property and brand integrity by detecting 
+		   and shutting down unauthorized imitations and counterfeits. With our multi-layered approach, 
+		   CyberSecure Solutions ensures robust protection against the full spectrum of modern digital 
+		   threats, keeping your business secure and resilient.
+		</p>
+	</div>
+	
+    <div class="container section" id="services">
+        <h2>Our Services</h2>
+        <div class="services">
+            <div class="service">
+                <i class="fas fa-shield-alt icon"></i>
+				<i class="fas fa-signature icon" style="color: #0B6CCA;"></i>
+                <h3 class="boxText">Watermark Text</h3>
+                <p class="boxText">Create text that can be identified by watermark. In your own application or in other application.</p>
+            </div>
+            <div class="service">
+				<i class="fas fa-at icon" style="color: #0B6CCA;"></i>
+				<i class="fas fa-fingerprint icon" style="color: #0B6CCA;"></i>
+                <h3 class="boxText">Author Identification</h3>
+                <p class="boxText">Unique text encoding to identify the author to protect solo creations or group projects.</p>
+            </div>
+            <div class="service">
+				<i class="fas fa-chart-line icon" style="color: #0B6CCA;"></i>
+				<i class="fas fa-font icon" style="color: #0B6CCA;"></i>
+                <h3 class="boxText">Activity Tracking Text</h3>
+                <p class="boxText">Ingrain an activity index in the created text by embedding a user hehaviour or vital parameters.</p>
+            </div>
+			<div class="service">
+                <i class="fas fa-clock icon"></i>
+				<i class="fas fa-user-shield icon"></i>
+                <h3 class="boxText">Timstamped Creation</h3>
+                <p class="boxText">Embed a timstamp in the letters of the created text to distinguish human creation from AI. </p>
+            </div>
+			<div class="service">
+                <i class="fas fa-eye icon"></i>
+				<i class="fas fa-i-cursor icon" style="color: #0B6CCA;"></i>
+                <h3 class="boxText">Eyes Only Text</h3>
+                <p class="boxText">We offer security training to educate your staff on best practices to maintain a secure environment.</p>
+            </div>
+			<div class="service">
+				<i class="fas fa-not-equal icon" style="color: #0B6CCA;"></i>
+				<i class="fas fa-database icon" style="color: #0B6CCA;"></i>
+                <h3 class="boxText">Data Free Content</h3>
+                <p class="boxText">Create content that is readable for the human eye but machines can't read.</p>
+            </div>
+			<div class="service">
+        
+				<i class="fas fa-not-equal icon" style="color: #0B6CCA;"></i>
+				<i class="fas fa-copy icon" style="color: #0B6CCA;"></i>
+                <h3 class="boxText">Copy-Resistant Text</h3>
+                <p class="boxText">Make text un-copyable by hiding the underlaying code.</p>
+            </div>
+			<div class="service">
+        
+				<i class="fas fa-fingerprint icon" style="color: #0B6CCA;"></i>
+				<i class="fas fa-signature icon" style="color: #0B6CCA;"></i>
+                <h3 class="boxText">Signature Content</h3>
+                <p class="boxText">Create content thats distinguished and can be tracked by you only.</p>
+            </div>
+			<div class="service">
+				<i class="fas fa-scroll icon" style="color: #0B6CCA;"></i>
+                <h3 class="boxText">Text Provenance</h3>
+                <p class="boxText">Ensure the provenance identify the authorship of any text.</p>
+            </div>
+        </div>
+    </div>
+	
+    <div class="container section" id="contact">
+        <h2>Contact Us</h2>
+        <p>For more information about our services, please contact us:</p>
+        <p>Email: <a href="mailto:info@cybersecuresolutions.com">info@cybersecuresolutions.com</a></p>
+        <p>Phone: (123) 456-7890</p>
+    </div>
+    <footer>
+        <p>&copy; 2024 CyberSecure Solutions. All rights reserved.</p>
+    </footer>
+<script>
 
-    <script>
-        function format_link(link) {
-            if (link)
-                return "<a href='" + link + "' target='_blank'>website</a>";
-            else return "";
-        }
+function randomText(){
+    var text = 'abcdefghijklmnopqrstuvwxyz'
+    letter = text[Math.floor(Math.random() * text.length)];
+    return letter;
+}
 
-        CsvToHtmlTable.init({
-            csv_path: "data/Health Clinics in Chicago.csv",
-            element: "table-container",
-            allow_download: true,
-            csv_options: {
-                separator: ",",
-                delimiter: '"'
-            },
-            datatables_options: {
-                paging: false
-            },
-            custom_formatting: [
-                [4, format_link]
-            ]
-        });
-    </script>
+
+function rain(){
+    let cloud = document.querySelector('.cloud');
+    let e = document.createElement('div');
+    let left = Math.floor(Math.random() * 290)
+    let size = Math.random() * 1.5;
+    let duration = Math.random() * 1;
+    e.classList.add('text');
+    cloud.appendChild(e);
+    e.innerText = randomText()
+    e.style.left = 10+ left + 'px'
+    e.style.fontSize = 0.5+size+'em';
+    e.style.animationDuration = 1+duration + 's';
+
+    setTimeout(function(){
+        cloud.removeChild(e)
+    },2000)
+}
+setInterval(function() {
+    rain()
+}, 20)
+
+</script>
 </body>
-
 </html>
