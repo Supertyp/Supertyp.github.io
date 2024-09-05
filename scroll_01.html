@@ -12,6 +12,17 @@
     text-align: center;
   }
 
+  .sticky-title {
+    position: sticky;
+    top: 0;
+    background-color: #3d2b1f; /* Same as the body background */
+    color: #f8f4e3;
+    margin: 0;
+    padding: 10px;
+    z-index: 1000; /* Ensure it stays above other content */
+    border-bottom: 2px solid #a67b5b; /* Gold accent border */
+  }
+
   .scroll-container {
     background-color: #4b3829; /* Slightly lighter shade for the container */
     overflow: auto;
@@ -64,7 +75,7 @@
 </head>
 <body>
 
-<h2 id="page-title">Image Gallery</h2>
+<h2 id="page-title" class="sticky-title">Image Gallery</h2>
 
 <div class="scroll-container"></div>
 
@@ -1781,6 +1792,7 @@
     }
   ]
 }
+
   // Function to determine if a given path is an image file
   function isImageFile(path) {
     return /\.(jpg|jpeg|png|gif)$/i.test(path);
