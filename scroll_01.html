@@ -7,7 +7,7 @@
     height: 100%;
     margin: 0;
     padding: 0;
-    overflow: hidden; /* Prevent scrolling */
+    overflow: hidden; /* Prevent vertical scrolling */
   }
 
   body {
@@ -15,6 +15,9 @@
     color: #f8f4e3; /* Warm ivory text color */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Full viewport height */
   }
 
   .sticky-title {
@@ -30,22 +33,15 @@
     box-sizing: border-box;
   }
 
-  .container {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-  }
-
   .scroll-container {
     background-color: #4b3829; /* Slightly lighter shade for the container */
-    overflow: hidden; /* Prevent scrolling within the container */
+    overflow-x: auto; /* Enable horizontal scrolling */
     white-space: nowrap;
     padding: 10px;
     border-top: 2px solid #a67b5b; /* Gold accent border */
     flex: 1; /* Take up remaining space */
     display: flex;
     align-items: flex-start; /* Align images to the top */
-    justify-content: center; /* Center the images */
     box-sizing: border-box;
   }
 
@@ -56,9 +52,9 @@
   }
 
   .scroll-container img {
-    max-width: 60vw; /* Set a maximum width for larger images */
+    max-width: 50vw; /* Set a maximum width for larger images */
     height: auto;
-    max-height: 50vh; /* Limits the height for larger images */
+    max-height: 40vh; /* Limits the height for larger images */
     cursor: pointer;
     border: 2px solid #a67b5b; /* Gold border */
     border-radius: 8px;
@@ -85,16 +81,17 @@
   h2 {
     color: #f8f4e3;
     font-size: 24px;
+    margin: 0;
   }
 </style>
 </head>
 <body>
 
-<div class="container">
-  <h2 id="page-title" class="sticky-title">Image Gallery</h2>
-  <input type="text" class="search-box" placeholder="Search by ID..." oninput="filterImages()" />
-  <div class="scroll-container"></div>
-</div>
+<h2 id="page-title" class="sticky-title">Image Gallery</h2>
+
+<input type="text" class="search-box" placeholder="Search by ID..." oninput="filterImages()" />
+
+<div class="scroll-container"></div>
 
 <script>
   // Example JSON data embedded directly into the script
