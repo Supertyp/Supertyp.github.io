@@ -3,12 +3,17 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Prevent scrolling */
+  }
+
   body {
     background-color: #3d2b1f; /* Rich brown background */
     color: #f8f4e3; /* Warm ivory text color */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-    padding: 0;
     text-align: center;
   }
 
@@ -21,16 +26,27 @@
     padding: 10px;
     z-index: 1000; /* Ensure it stays above other content */
     border-bottom: 2px solid #a67b5b; /* Gold accent border */
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
   }
 
   .scroll-container {
     background-color: #4b3829; /* Slightly lighter shade for the container */
-    overflow: auto;
+    overflow: hidden; /* Prevent scrolling within the container */
     white-space: nowrap;
     padding: 10px;
     border-top: 2px solid #a67b5b; /* Gold accent border */
+    flex: 1; /* Take up remaining space */
     display: flex;
     align-items: flex-start; /* Align images to the top */
+    justify-content: center; /* Center the images */
+    box-sizing: border-box;
   }
 
   .image-wrapper {
@@ -42,7 +58,7 @@
   .scroll-container img {
     max-width: 60vw; /* Set a maximum width for larger images */
     height: auto;
-    max-height: 80vh; /* Limits the height for larger images */
+    max-height: 50vh; /* Limits the height for larger images */
     cursor: pointer;
     border: 2px solid #a67b5b; /* Gold border */
     border-radius: 8px;
@@ -68,18 +84,17 @@
 
   h2 {
     color: #f8f4e3;
-    margin-top: 20px;
     font-size: 24px;
   }
 </style>
 </head>
 <body>
 
-<h2 id="page-title" class="sticky-title">Image Gallery</h2>
-
-<div class="scroll-container"></div>
-
-<input type="text" class="search-box" placeholder="Search by ID..." oninput="filterImages()" />
+<div class="container">
+  <h2 id="page-title" class="sticky-title">Image Gallery</h2>
+  <input type="text" class="search-box" placeholder="Search by ID..." oninput="filterImages()" />
+  <div class="scroll-container"></div>
+</div>
 
 <script>
   // Example JSON data embedded directly into the script
